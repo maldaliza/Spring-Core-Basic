@@ -8,14 +8,16 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 class ApplicationContextInfoTest {
 
-    AnnotationConfigApplicationContext ac = new AnnotationConfigApplicationContext(AppConfig.class);
+    // applicationContext는 스프링 컨테이너다.
+    // AnnotationConfigApplicationContext()는 스프링 컨테이너의 구현체이다.
+    AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
 
     @Test
     @DisplayName("모든 빈 출력하기")
     void findAllBean() {
-        String[] beanDefinitionNames = ac.getBeanDefinitionNames();
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
-            Object bean = ac.getBean(beanDefinitionName);
+            Object bean = applicationContext.getBean(beanDefinitionName);
             System.out.println("name = " + beanDefinitionName + " object = " + bean);
         }
     }
@@ -23,14 +25,14 @@ class ApplicationContextInfoTest {
     @Test
     @DisplayName("애플리케이션션 빈 력하기")
     void findApplicationBean() {
-        String[] beanDefinitionNames = ac.getBeanDefinitionNames();
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
         for (String beanDefinitionName : beanDefinitionNames) {
-            BeanDefinition beanDefinition = ac.getBeanDefinition(beanDefinitionName);
+            BeanDefinition beanDefinition = applicationContext.getBeanDefinition(beanDefinitionName);
 
             // Role ROLE_APPLICATION: 직접 등록한 애플리케이션 빈
             // Role ROLE_INFRASTRUCTURE: 스프링이 내부에서 사용하는 빈
             if(beanDefinition.getRole() == BeanDefinition.ROLE_APPLICATION) {
-                Object bean = ac.getBean(beanDefinitionName);
+                Object bean = applicationContext.getBean(beanDefinitionName);
                 System.out.println("name = " + beanDefinitionName + " object = " + bean);
             }
         }
