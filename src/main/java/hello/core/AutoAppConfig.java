@@ -15,8 +15,11 @@ import org.springframework.context.annotation.FilterType;
 )
 public class AutoAppConfig {
 
-    @Bean(name = "memoryMemberRepository")
-    MemberRepository memberRepository() {
-        return new MemoryMemberRepository();
-    }
+    /*
+        // 예시를 보여주기 위해 임의로 생성한 스프링 빈
+        @Bean(name = "memoryMemberRepository")
+        MemberRepository memberRepository() {
+            return new MemoryMemberRepository();
+        }
+    */
 }
