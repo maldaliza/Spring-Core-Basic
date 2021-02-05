@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class OrderServiceImpl implements OrderService {
 
+    // 생성자 주입을 하면 final 키워드 사용가능! (생성할 때 정해지면 바뀌지 않는다.)
     private final MemberRepository memberRepository;
     private final DiscountPolicy discountPolicy;
 
