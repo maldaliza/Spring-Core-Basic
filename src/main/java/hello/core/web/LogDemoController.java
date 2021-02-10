@@ -14,13 +14,14 @@ import javax.servlet.http.HttpServletRequest;
 public class LogDemoController {
 
     private final LogDemoService logDemoService;
-    private final ObjectProvider<MyLogger> myLoggerProvider;
+    private final MyLogger myLogger;
 
     @RequestMapping("log-demo")
     @ResponseBody
     public String logDemo(HttpServletRequest request) {     // HttpServletRequest로 클라이언트 요청 정보를 받을 수 있다.
         String requestURL = request.getRequestURL().toString();
-        MyLogger myLogger = myLoggerProvider.getObject();
+
+        System.out.println("myLogger = " + myLogger.getClass());        // 스프링이 조작한 클래스가 스프링 빈으로 등록되어 있다.
         myLogger.setRequestURL(requestURL);
 
         myLogger.log("controller test");
